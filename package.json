@@ -1,0 +1,19 @@
+{
+  "name": "test_front_intern",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Guillaume Gomez <guillaume.gomez846@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^12.11.1",
+    "@types/react": "^16.9.9",
+    "@types/react-dom": "^16.9.2",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9"
+  }
+}
