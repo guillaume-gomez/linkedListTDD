@@ -6,10 +6,15 @@ import {
   removeHead,
   print,
   length,
-  toMap
+  toMap,
+  updateNode,
+  Node,
 } from "../LinkedList";
-import { Node } from "./Node";
+import { NodeLinkedList } from "./NodeLinkedList";
 
+// we assume that data structure is mutable and can cause react issues.
+// The purpose here is to use linked list developed in the first part of the interview
+// DO NOT INJECT mutable data struction on react component :)
 let linkedList = createLinkedList("first node");
 
 export const LinkedListManager = () => {
@@ -18,12 +23,33 @@ export const LinkedListManager = () => {
 
   function addItem() {
     const newNode = append(linkedList, "another node");
-    console.log(newNode)
-    const nodes = toMap(linkedList);
-    setNodeArray([...nodes, newNode])
+    // a better solution would be to use createNode...
+    setNodeArray([...nodeArray, newNode])
   }
 
-  console.log("rerender")
+  function updateNodeItem(node: Node, newNode : Node, nodeIndex: number ) {
+    // const newNodes = nodeArray.map((node, index) => {
+    //   if(index === nodeIndex) {
+    //     return newNode;
+    //   }
+    //   return node;
+    // });
+    // setNodeArray(newNodes);
+    
+    // or though update linkedList
+    updateNode(node, newNode.value);
+    setNodeArray(toMap(linkedList))
+  }
+
+  function removeNode(nodeBefore: Node) {
+    const deletedNode = removeAfter(linkedList, nodeBefore);
+    
+    //const updatesNodeArray = nodeArray.filter(node => node.value !== deletedNode.value);
+    //setNodeArray(updatesNodeArray);
+
+    // or through linkedList
+    setNodeArray(toMap(linkedList));
+  }
 
   return (
     <div>
@@ -32,17 +58,22 @@ export const LinkedListManager = () => {
       </div>
       <div>
         {
-          nodeArray.map(node => {
-            return <Node value={node.value} />
-          })
+          nodeArray.map((node, index) => 
+            <NodeLinkedList key={index} node={node} onchangeCallback={(newNode) => updateNodeItem(node, newNode, index)} >
+              { (index > 0 && index < nodeArray.length - 1) ? 
+                  <button onClick={() => { removeNode(nodeArray[index - 1]) }}>Remove</button> :
+                  null
+              }
+            </NodeLinkedList>
+          )
         }
       </div>
       <div>
         <button onClick={addItem}>Add item</button>
       </div>
       <div>
-        <p> Print the linked list : { print(linkedList) }</p>
-        <p> Length : {length(linkedList) } </p>
+        <p> Length : { length(linkedList) } </p>
+        <p> To String : { print(linkedList) } </p>
       </div>
     </div>
   );

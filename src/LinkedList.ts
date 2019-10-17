@@ -1,4 +1,4 @@
-interface Node {
+export interface Node {
   next: Node | null;
   value: string;
 };
@@ -18,6 +18,12 @@ export function createNode(value: string) : Node {
 // create a new linked list
 export function createLinkedList(firstValue: string) : LinkedList {
   return { head: createNode(firstValue) };
+}
+
+
+export function updateNode(node: Node, value: string) : Node {
+  node.value = value;
+  return node;
 }
 
 // insert a new node after a node in a linked list
