@@ -8,6 +8,7 @@ interface LinkedList {
   head: Node;
 }
 
+export const emptyLinkedList: LinkedList = { head: null };
 
 // create a new node
 export function createNode(value: string) : Node {
