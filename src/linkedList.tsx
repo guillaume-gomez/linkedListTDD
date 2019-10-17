@@ -64,3 +64,25 @@ export function removeHead(linkedList: LinkedList) : Node {
 
   return newHead;
 }
+
+export function findNode(linkedList: LinkedList, value: string) : Node {
+  let iterator = linkedList.head;
+  while(iterator.value !== value) {
+    iterator = iterator.next;
+  }
+  return iterator;
+}
+
+export function forEach(linkedList: LinkedList, callback: (value: string) => void) : void {
+  let iterator = linkedList.head;
+  while(iterator) {
+    callback(iterator.value);
+    iterator = iterator.next;
+  }
+}
+
+export function print(linkedList: LinkedList) : string {
+  let results : string[] = [];
+  forEach(linkedList, (value) => { results.push(value) } );
+  return results.join(", ");
+}
