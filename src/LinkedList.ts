@@ -84,6 +84,18 @@ export function forEach(linkedList: LinkedList, callback: (value: string, index:
   }
 }
 
+export function toMap(linkedList: LinkedList) : Node[] {
+  let nodes : Node[] = [linkedList.head];
+  let iterator = linkedList.head;
+  while(iterator) {
+    iterator = iterator.next;
+    if(iterator) {
+      nodes.push(iterator);
+    }
+  }
+  return nodes;
+}
+
 export function print(linkedList: LinkedList) : string {
   let results : string[] = [];
   forEach(linkedList, (value) => { results.push(value) } );

@@ -9,7 +9,8 @@ import {
   removeHead,
   removeAfter,
   forEach,
-  print
+  print,
+  toMap
 } from "../../LinkedList";
 
 it("create an empty linked list", () => {
@@ -104,3 +105,12 @@ it("use print fonction to display the linked list values", () => {
   const expectedResult = "1, 23, 456";
   expect(print(linkedList)).toEqual(expectedResult);
 });
+
+it("use toMap function to get all nodes", () => {
+  const linkedList = createLinkedList("a");
+  const secondNode = append(linkedList, "b");
+  const thirdNode = append(linkedList, "c");
+
+  const expectedResult = [{ value: "a", next: secondNode }, { value: "b", next: thirdNode }, { value: "c", next: null }];
+  expect(toMap(linkedList)).toEqual(expectedResult);
+})
