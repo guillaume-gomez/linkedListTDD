@@ -87,3 +87,16 @@ export function print(linkedList: LinkedList) : string {
   forEach(linkedList, (value) => { results.push(value) } );
   return results.join(", ");
 }
+
+export function length(linkedList: LinkedList) : number {
+  if(linkedList.head === null) {
+    return 0;
+  };
+  let len = 0;
+  let iterator = linkedList.head;
+  while(iterator) {
+    len = len + 1;
+    iterator = iterator.next;
+  }
+  return len;
+}
