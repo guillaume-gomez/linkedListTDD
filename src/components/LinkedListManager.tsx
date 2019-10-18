@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { 
+import React, { useState } from "react";
+import {
   createLinkedList,
   append,
   removeAfter,
@@ -8,7 +8,7 @@ import {
   length,
   toMap,
   updateNode,
-  Node,
+  Node
 } from "../LinkedList";
 import { NodeLinkedList } from "./NodeLinkedList";
 
@@ -18,16 +18,15 @@ import { NodeLinkedList } from "./NodeLinkedList";
 let linkedList = createLinkedList("first node");
 
 export const LinkedListManager = () => {
-  
   const [nodeArray, setNodeArray] = useState([linkedList.head]);
 
   function addItem() {
     const newNode = append(linkedList, "another node");
     // a better solution would be to use createNode...
-    setNodeArray([...nodeArray, newNode])
+    setNodeArray([...nodeArray, newNode]);
   }
 
-  function updateNodeItem(node: Node, newNode : Node, nodeIndex: number ) {
+  function updateNodeItem(node: Node, newNode: Node, nodeIndex: number) {
     // const newNodes = nodeArray.map((node, index) => {
     //   if(index === nodeIndex) {
     //     return newNode;
@@ -35,15 +34,15 @@ export const LinkedListManager = () => {
     //   return node;
     // });
     // setNodeArray(newNodes);
-    
+
     // or though update linkedList
     updateNode(node, newNode.value);
-    setNodeArray(toMap(linkedList))
+    setNodeArray(toMap(linkedList));
   }
 
   function removeNode(nodeBefore: Node) {
     const deletedNode = removeAfter(linkedList, nodeBefore);
-    
+
     //const updatesNodeArray = nodeArray.filter(node => node.value !== deletedNode.value);
     //setNodeArray(updatesNodeArray);
 
@@ -53,28 +52,46 @@ export const LinkedListManager = () => {
 
   return (
     <div>
-      <div>
+      <div
+        style={{
+          textAlign: "center",
+          fontFamily: "Quicksand",
+          fontSize: "24px",
+          letterSpacing: "2px",
+          textDecoration: "underline",
+          color: "#004D71"
+        }}
+      >
         <h1> Linked list manager</h1>
       </div>
-      <div>
-        {
-          nodeArray.map((node, index) => 
-            <NodeLinkedList key={index} node={node} onchangeCallback={(newNode) => updateNodeItem(node, newNode, index)} >
-              { (index > 0 && index < nodeArray.length - 1) ? 
-                  <button onClick={() => { removeNode(nodeArray[index - 1]) }}>Remove</button> :
-                  null
-              }
-            </NodeLinkedList>
-          )
-        }
+      <div style={{ fontFamily: "Open Sans", fontSize: "14px" }}>
+        {nodeArray.map((node, index) => (
+          <NodeLinkedList
+            key={index}
+            node={node}
+            onchangeCallback={newNode => updateNodeItem(node, newNode, index)}
+          >
+            {index > 0 && index < nodeArray.length - 1 ? (
+              <button
+                onClick={() => {
+                  removeNode(nodeArray[index - 1]);
+                }}
+              >
+                Remove
+              </button>
+            ) : null}
+          </NodeLinkedList>
+        ))}
       </div>
       <div>
         <button onClick={addItem}>Add item</button>
       </div>
       <div>
-        <p> Length : { length(linkedList) } </p>
-        <p> To String : { print(linkedList) } </p>
+        <p>
+          Length : <b>{length(linkedList)}</b>
+        </p>
+        <p> To String : {print(linkedList)} </p>
       </div>
     </div>
   );
-}
+};
