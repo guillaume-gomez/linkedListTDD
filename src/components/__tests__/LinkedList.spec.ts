@@ -6,6 +6,7 @@ import {
   length,
   findNode,
   append,
+  insertAfter,
   removeHead,
   removeAfter,
   forEach,
@@ -13,17 +14,32 @@ import {
   toMap
 } from "../../LinkedList";
 
+
 it("create an empty linked list", () => {
   expect(emptyLinkedList.head).toBe(null);
-  expect(length(emptyLinkedList)).toBe(0);
 });
-
 
 it("create an linked list with only one item", () => {
   const linkedList = createLinkedList("first node");
   expect(linkedList.head.value).toBe("first node");
   expect(linkedList.head.next).toBe(null);
+});
+
+it("should insert a node after a specific node in linkedlist", () => {
+  const linkedList = createLinkedList("first node");
+  const secondNode = insertAfter(linkedList.head, "second node");
+  expect(secondNode.value).toBe("second node")
+  expect(linkedList.head.next).toBe(secondNode)
+});
+
+it("get the linked list length", () => {
+  expect(length(emptyLinkedList)).toBe(0)
+  const linkedList = createLinkedList("first node");
   expect(length(linkedList)).toBe(1);
+
+  const secondNode = insertAfter(linkedList.head, "second node");
+  const thirdNode = insertAfter(secondNode, "third node");
+  expect(length(linkedList)).toBe(3);
 });
 
 it("find value in one item linked list", () => {
@@ -36,6 +52,7 @@ it("find value in one item linked list", () => {
   const nodeNotFound = findNode(linkedList, "no existing node");
   expect(nodeNotFound).toBe(null);
 });
+
 
 it("manipulate a linked list", () => {
   const linkedList = createLinkedList("first node");
