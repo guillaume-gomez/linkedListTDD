@@ -3,7 +3,6 @@ export interface Node {
   value: string;
 };
 
-// what can we do to access in O(1) at the tail
 interface LinkedList {
   head: Node;
 }
