@@ -2,8 +2,10 @@ import { shallow } from "enzyme";
 
 import { 
   emptyLinkedList,
+  createNode,
   createLinkedList,
   length,
+  tail,
   findNode,
   append,
   insertAfter,
@@ -17,6 +19,10 @@ import {
 
 it("create an empty linked list", () => {
   expect(emptyLinkedList.head).toBe(null);
+});
+
+it("create a node", () => {
+  expect(createNode("a new node")).toEqual({ value: "a new node", next: null});
 });
 
 it("create an linked list with only one item", () => {
@@ -42,6 +48,15 @@ it("get the linked list length", () => {
   expect(length(linkedList)).toBe(3);
 });
 
+it("get the tail", () => {
+  const linkedList = createLinkedList("first node");
+  const secondNode = insertAfter(linkedList.head, "second node");
+  const thirdNode = insertAfter(secondNode, "third node");
+  
+  expect(tail(linkedList)).toEqual(thirdNode);
+
+});
+
 it("find value in one item linked list", () => {
   const linkedList = createLinkedList("first node");
   expect(length(linkedList)).toBe(1);
@@ -51,6 +66,31 @@ it("find value in one item linked list", () => {
 
   const nodeNotFound = findNode(linkedList, "no existing node");
   expect(nodeNotFound).toBe(null);
+});
+
+
+it("use forEach in a linked list", () => {
+  const linkedList = createLinkedList("first node");
+  const secondNode = append(linkedList, "second node");
+  const thirdNode = append(linkedList, "third node");
+  
+  let expectedResult = ["node 0", "node 1", "node 2"];
+  let result : string[] = [];
+  forEach(linkedList, (value, index) => {
+    const computedValue = `${value.slice(value.length - 4)} ${index}`;
+    result.push(computedValue);
+  });
+  expect(expectedResult).toEqual(result);
+
+});
+
+it("use print fonction to display the linked list values", () => {
+  const linkedList = createLinkedList("1");
+  const secondNode = append(linkedList, "23");
+  const thirdNode = append(linkedList, "456");
+
+  const expectedResult = "1, 23, 456";
+  expect(print(linkedList)).toEqual(expectedResult);
 });
 
 
@@ -97,30 +137,6 @@ it("find values in a manipulated linked list", () => {
 
   expect(findNode(linkedList, "fourth node")).toBe(null);
   expect(findNode(linkedList, "third node")).toBe(thirdNode);
-});
-
-it("use forEach in a linked list", () => {
-  const linkedList = createLinkedList("first node");
-  const secondNode = append(linkedList, "second node");
-  const thirdNode = append(linkedList, "third node");
-  
-  let expectedResult = ["node 0", "node 1", "node 2"];
-  let result : string[] = [];
-  forEach(linkedList, (value, index) => {
-    const computedValue = `${value.slice(value.length - 4)} ${index}`;
-    result.push(computedValue);
-  });
-  expect(expectedResult).toEqual(result);
-
-});
-
-it("use print fonction to display the linked list values", () => {
-  const linkedList = createLinkedList("1");
-  const secondNode = append(linkedList, "23");
-  const thirdNode = append(linkedList, "456");
-
-  const expectedResult = "1, 23, 456";
-  expect(print(linkedList)).toEqual(expectedResult);
 });
 
 it("use toMap function to get all nodes", () => {

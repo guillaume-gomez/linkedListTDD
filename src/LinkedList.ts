@@ -19,12 +19,6 @@ export function createLinkedList(firstValue: string) : LinkedList {
   return { head: createNode(firstValue) };
 }
 
-
-export function updateNode(node: Node, value: string) : Node {
-  node.value = value;
-  return node;
-}
-
 // insert a new node after a node in a linked list
 export function insertAfter(node: Node, value: string) : Node {
   let newNode = createNode(value);
@@ -36,6 +30,25 @@ export function insertAfter(node: Node, value: string) : Node {
   return newNode;
 }
 
+// insert after tail
+export function append(linkedList: LinkedList, value: string) : Node {
+  let tailLinkedList: Node = tail(linkedList);
+  return insertAfter(tailLinkedList, value);
+}
+
+export function length(linkedList: LinkedList) : number {
+  if(linkedList.head === null) {
+    return 0;
+  };
+  let len = 0;
+  let iterator = linkedList.head;
+  while(iterator) {
+    len = len + 1;
+    iterator = iterator.next;
+  }
+  return len;
+}
+
 export function tail(linkedList: LinkedList) : Node {
   let tail = linkedList.head;
 
@@ -45,9 +58,12 @@ export function tail(linkedList: LinkedList) : Node {
   return tail;
 }
 
-export function append(linkedList: LinkedList, value: string) : Node {
-  let tailLinkedList: Node = tail(linkedList);
-  return insertAfter(tailLinkedList, value);
+export function findNode(linkedList: LinkedList, value: string) : Node {
+  let iterator = linkedList.head;
+  while(iterator && iterator.value !== value) {
+    iterator = iterator.next;
+  }
+  return iterator;
 }
 
 export function removeAfter(linkedList: LinkedList, node: Node): Node {
@@ -71,14 +87,6 @@ export function removeHead(linkedList: LinkedList) : Node {
   return oldHead;
 }
 
-export function findNode(linkedList: LinkedList, value: string) : Node {
-  let iterator = linkedList.head;
-  while(iterator && iterator.value !== value) {
-    iterator = iterator.next;
-  }
-  return iterator;
-}
-
 export function forEach(linkedList: LinkedList, callback: (value: string, index: number) => void) : void {
   let iterator = linkedList.head;
   let index = 0;
@@ -88,6 +96,13 @@ export function forEach(linkedList: LinkedList, callback: (value: string, index:
     iterator = iterator.next;
   }
 }
+
+export function print(linkedList: LinkedList) : string {
+  let results : string[] = [];
+  forEach(linkedList, (value) => { results.push(value) } );
+  return results.join(", ");
+}
+
 
 export function toMap(linkedList: LinkedList) : Node[] {
   let nodes : Node[] = [linkedList.head];
@@ -101,21 +116,7 @@ export function toMap(linkedList: LinkedList) : Node[] {
   return nodes;
 }
 
-export function print(linkedList: LinkedList) : string {
-  let results : string[] = [];
-  forEach(linkedList, (value) => { results.push(value) } );
-  return results.join(", ");
-}
-
-export function length(linkedList: LinkedList) : number {
-  if(linkedList.head === null) {
-    return 0;
-  };
-  let len = 0;
-  let iterator = linkedList.head;
-  while(iterator) {
-    len = len + 1;
-    iterator = iterator.next;
-  }
-  return len;
+export function updateNode(node: Node, value: string) : Node {
+  node.value = value;
+  return node;
 }
