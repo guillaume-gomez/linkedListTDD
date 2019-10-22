@@ -21,14 +21,20 @@ export const LinkedListManager = () => {
   const [nodeArray, setNodeArray] = useState([linkedList.head]);
 
   function addItem() {
-   
   }
 
   function updateNodeItem(node: Node, newNode: Node, nodeIndex: number) {
-   
+    const newNodes = nodeArray.map((node, index) => {
+      if(index === nodeIndex) {
+        return newNode;
+      }
+      return node;
+    });
+    setNodeArray(newNodes);
   }
 
   function removeNode(nodeBefore: Node) {
+
   }
 
   return (
@@ -47,6 +53,21 @@ export const LinkedListManager = () => {
       </div>
       <div style={{ fontFamily: "Open Sans", fontSize: "14px" }}>
         {nodeArray.map((node, index) => (
+          <NodeLinkedList
+            key={index}
+            node={node}
+            onchangeCallback={newNode => updateNodeItem(node, newNode, index)}
+          >
+            {index > 0 && index < nodeArray.length - 1 ? (
+              <button
+                onClick={() => {
+                  removeNode(nodeArray[index - 1]);
+                }}
+              >
+                Remove
+              </button>
+            ) : null}
+          </NodeLinkedList>
         ))}
       </div>
       <div>
@@ -54,9 +75,9 @@ export const LinkedListManager = () => {
       </div>
       <div>
         <p>
-          Length : <b>{length(linkedList)}</b>
+          Length : <b>{}</b>
         </p>
-        <p> To String : {print(linkedList)} </p>
+        <p> To String : {} </p>
       </div>
     </div>
   );
