@@ -16,8 +16,8 @@ export const NodeLinkedList = ({
   }
 
   return (
-    <div style={{ height: "2vh", padding: "8px" }}>
-      <label style={{ paddingRight: "1vw" }}>Value:</label>
+    <div>
+      <label >Value:</label>
 
       <input
         type="text"
@@ -25,9 +25,6 @@ export const NodeLinkedList = ({
         name="value"
         value={node.value}
         onChange={onchange}
-        style={{
-          marginRight: "1vw"
-        }}
       />
       {children}
     </div>

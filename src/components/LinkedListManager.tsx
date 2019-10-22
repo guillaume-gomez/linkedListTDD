@@ -34,24 +34,27 @@ export const LinkedListManager = () => {
   }
 
   function removeNode(nodeBefore: Node) {
-
   }
 
   return (
-    <div>
+    <div style={{ border: "5px dashed yellowgreen", padding: "10px" }}>
       <div
         style={{
           textAlign: "center",
-          fontFamily: "Quicksand",
-          fontSize: "24px",
-          letterSpacing: "2px",
-          textDecoration: "underline",
-          color: "#004D71"
+          color: "lightslategrey",
+          backgroundColor: "purple",
+          textTransform: "uppercase"
         }}
       >
         <h1> Linked list manager</h1>
       </div>
-      <div style={{ fontFamily: "Open Sans", fontSize: "14px" }}>
+      <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end"
+          }}
+        >
         {nodeArray.map((node, index) => (
           <NodeLinkedList
             key={index}
@@ -74,11 +77,19 @@ export const LinkedListManager = () => {
         <button onClick={addItem}>Add item</button>
       </div>
       <div>
-        <p>
-          Length : <b>{}</b>
+        <p style={{ fontWeight: "bold" }}> Length : {} </p>
+        <p
+          style={{
+            textDecoration: "underline",
+            textTransform: "capitalize",
+            fontStyle: "italic"
+          }}
+        >
+          {" "}
+          To String : {}
         </p>
-        <p> To String : {} </p>
       </div>
     </div>
   );
 };
+
