@@ -48,6 +48,18 @@ it("get the linked list length", () => {
   expect(length(linkedList)).toBe(3);
 });
 
+it("should insert a node in the middle of linkedlist", () => {
+  const linkedList = createLinkedList("first node");
+  const secondNode = insertAfter(linkedList.head, "second node");
+  const thirdNode = insertAfter(secondNode, "third node");
+  
+  const fourthNode = insertAfter(secondNode, "fourth Node")
+
+  expect(secondNode.next).toEqual(fourthNode)
+  expect(fourthNode.next).toEqual(thirdNode)
+});
+
+
 it("get the tail", () => {
   const linkedList = createLinkedList("first node");
   const secondNode = insertAfter(linkedList.head, "second node");
