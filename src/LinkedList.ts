@@ -11,17 +11,23 @@ export const emptyLinkedList: LinkedList = { head: null };
 
 // create a new node
 export function createNode(value: string) : Node {
-  return;
+  return { value, next: null };
 }
 
 // create a new linked list
 export function createLinkedList(firstValue: string) : LinkedList {
-  return;
+  return { head: createNode(firstValue) };
 }
 
 // insert a new node after a node in a linked list
 export function insertAfter(node: Node, value: string) : Node {
-  return;
+  let newNode = createNode(value);
+  let oldNode = node.next;
+
+  newNode.next = oldNode;
+  node.next = newNode;
+
+  return newNode;
 }
 
 // insert after tail
@@ -31,15 +37,18 @@ export function append(linkedList: LinkedList, value: string) : Node {
 }
 
 export function length(linkedList: LinkedList) : number {
-  return -1;
+
 }
 
 export function tail(linkedList: LinkedList) : Node {
-  return;
 }
 
 export function findNode(linkedList: LinkedList, value: string) : Node {
-  return;
+  let iterator = linkedList.head;
+  while(iterator && iterator.value !== value) {
+    iterator = iterator.next;
+  }
+  return iterator;
 }
 
 export function removeAfter(linkedList: LinkedList, node: Node): Node {
@@ -68,7 +77,7 @@ export function forEach(linkedList: LinkedList, callback: (value: string, index:
 }
 
 export function print(linkedList: LinkedList) : string {
-  return ""
+
 }
 
 
