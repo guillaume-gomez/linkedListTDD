@@ -13,8 +13,6 @@ export const NodeLinkedList = ({
   children
 }: NodeProps) => {
   function onchange(event: React.ChangeEvent<HTMLInputElement>) {
-    const updatedNode: Node = node;
-    onchangeCallback({ ...updatedNode, value: event.target.value });
   }
 
   return (
