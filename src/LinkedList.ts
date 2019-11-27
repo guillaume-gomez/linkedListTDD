@@ -15,7 +15,7 @@ export function createNode(value: string) : Node {
 }
 
 // create a new linked list
-export function createLinkedList(firstValue: string) : LinkedList {
+export function createLinkedList(value: string) : LinkedList {
   
 }
 
