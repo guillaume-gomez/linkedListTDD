@@ -15,8 +15,8 @@ export function createNode(value: string) : Node {
 }
 
 // create a new linked list
-export function createLinkedList(firstValue: string) : LinkedList {
-  return { head: createNode(firstValue) };
+export function createLinkedList(value: string) : LinkedList {
+  return { head: createNode(value) };
 }
 
 // insert a new node after a node in a linked list
