@@ -27,27 +27,13 @@ export const LinkedListManager = () => {
   }
 
   function updateNodeItem(node: Node, newNode: Node, nodeIndex: number) {
-     const newNodes = nodeArray.map((node, index) => {
-       if(index === nodeIndex) {
-         return newNode;
-       }
-       return node;
-    });
-     setNodeArray(newNodes);
-
-    // or though update linkedList
-    //updateNode(node, newNode.value);
-    //setNodeArray(toMap(linkedList));
+    updateNode(node, newNode.value);
+    setNodeArray(toMap(linkedList));
   }
 
   function removeNode(nodeBefore: Node) {
     const deletedNode = removeAfter(linkedList, nodeBefore);
-
-    const updatesNodeArray = nodeArray.filter(node => node.value !== deletedNode.value);
-    setNodeArray(updatesNodeArray);
-
-    // or through linkedList
-    //setNodeArray(toMap(linkedList));
+    setNodeArray(toMap(linkedList));
   }
 
   return (
