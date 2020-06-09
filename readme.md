@@ -1,7 +1,7 @@
 ### Front end test
 
 The test is splited in three parts
-- creation of a linked list and too functions to manipulate them
+- creation of a linked list and tool functions to manipulate them
 - two react components to display a linked list
 - improve the react components style
 
