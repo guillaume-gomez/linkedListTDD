@@ -25,7 +25,7 @@ You should :
  - and NodeLinkedList.tsx stores the data node
  
  
-_Linked list is a muted data structure. So obviously, thoses react components are buggy (react don't like mutated data :) )__
+_Linked list is a muted data structure. So obviously, thoses react components are buggy (react don't like mutated data :) )
 
 So again, do not mutate data in react components like in this repository !!
 
